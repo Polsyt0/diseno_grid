@@ -1,4 +1,10 @@
+/* Importamos las variables primero */
 @import url("variables.css");
+
+/* Reset básico para que el Grid no rompa por los paddings */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 
 html, body {
     margin: 0;
@@ -6,84 +12,134 @@ html, body {
     font-family: var(--font-main);
     background: var(--bg);
     color: var(--fg);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* ==== GRID PRINCIPAL ==== */
+/* ==== LAYOUT PRINCIPAL (Bento Wrapper) ==== */
 .bento {
     display: grid;
     gap: var(--gap);
     padding: var(--gap);
-
+    max-width: 1400px;
+    margin: 0 auto;
+    
+    /* MÓVIL (< 700px): Una sola columna */
     grid-template-columns: 1fr;
 }
 
-/* Desktop ≥700px */
+/* DESKTOP (≥ 700px): Tres columnas */
 @media (min-width: 700px) {
     .bento {
         grid-template-columns: 1fr 1fr 1fr;
+        grid-auto-rows: auto;
     }
 }
 
-/* ==== COLUMNAS (primer nivel) ==== */
+/* ==== COLUMNAS PRINCIPALES ==== */
+/* Usamos Flex para que los items dentro se estiren si hace falta */
 .bento-col {
-    background: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
 }
 
-/* ==== SEGUNDO NIVEL: Grid interno ==== */
+/* ==== GRID INTERNO (Nivel 2) ==== */
 .grid-inner {
     display: grid;
     gap: var(--gap);
-
-    /* Ajustes base */
-    grid-template-columns: 1fr;
+    height: 100%; /* Para llenar la columna */
 }
 
-/* Configuraciones específicas según columna */
+/* Configuración específica Columna 1 */
 .col-1 .grid-inner {
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto; /* Dos filas naturales */
 }
 
+/* Configuración específica Columna 2 (Grid complejo) */
 .col-2 .grid-inner {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr 1fr; /* Dos columnas internas */
+    grid-auto-rows: minmax(150px, auto);
 }
 
+/* Configuración específica Columna 3 */
 .col-3 .grid-inner {
-    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    height: 100%;
 }
 
-/* ==== Ítems del bento ==== */
+/* ==== ESTILOS DE LAS TARJETAS (ITEMS) ==== */
 .item {
     background: var(--card-bg);
-    border-radius: var(--radius);
-    padding: 1rem;
     border: 1px solid var(--border);
-
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    justify-content: space-between;
+    gap: 0.8rem;
+    
+    overflow: hidden; /* Para que la imagen no se salga de las esquinas */
+    transition: transform 0.2s ease;
 
-    /* CSS Anidado */
+    /* CSS ANIDADO (Moderno) */
+    &:hover {
+        transform: translateY(-2px);
+        border-color: var(--accent);
+    }
+
     img {
         width: 100%;
         height: auto;
-        border-radius: calc(var(--radius) - 4px);
+        border-radius: calc(var(--radius) - 8px);
+        object-fit: cover; /* Recorta la imagen sin deformarla */
+        display: block;
     }
 
-    h2, h3, p {
+    h2 {
         margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+
+    h3 {
+        margin: 0;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        color: var(--accent);
+        letter-spacing: 1px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 0.95rem;
+        opacity: 0.8;
+        line-height: 1.4;
     }
 }
 
-/* ==== EJEMPLOS DE CELDAS QUE OCUPAN MÁS ESPACIO ==== */
-.item-b {
-    grid-column: 1 / -1; /* ocupa toda la fila */
+/* ==== VARIACIONES DE TAMAÑO (Clases de utilidad) ==== */
+
+/* Ocupa todo el ancho (2 columnas internas) */
+.span-full-width {
+    grid-column: 1 / -1;
 }
 
-.item-d {
-    grid-row: span 2; /* ocupa varias filas */
+/* Ocupa dos filas de alto */
+.span-2-rows {
+    grid-row: span 2;
 }
 
-.item-e {
-    grid-column: span 2; /* ocupa dos columnas */
+/* Estilo especial para tarjetas solo texto o destacadas */
+.item.dark-mode-card {
+    background: var(--fg);
+    color: var(--bg);
+    
+    h3 { color: #aaa; }
+}
+
+.fill-height {
+    height: 100%;
+    min-height: 400px; /* Altura mínima visual */
 }
