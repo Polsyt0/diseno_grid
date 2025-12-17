@@ -5,48 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bento Grid Layout</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="variables.css">
 </head>
 <body>
 
     <main class="bento">
-        <!-- COLUMNA 1 -->
+        
         <section class="bento-col col-1">
             <div class="grid-inner">
-                <div class="item item-a">
-                    <img src="img/mini10.webp" alt="">
-                    <h2>MI NUEVO PC</h2>
-                </div>
-                <div class="item item-b">
-                    <img src="img/mini11.webp" alt="">
-                    <p>GADGETS POR DEBAJO DE 50$</p>
-                </div>
+                <article class="item">
+                    <img src="mini10.webp" alt="Setup PC Blanco">
+                    <div>
+                        <h2>MI NUEVO PC</h2>
+                        <p>Setup minimalista 2024</p>
+                    </div>
+                </article>
+                
+                <article class="item dark-mode-card">
+                    <div>
+                        <h3>Selección</h3>
+                        <h2>GADGETS TOP</h2>
+                    </div>
+                    <p>Los mejores accesorios por menos de 50$.</p>
+                    <img src="mini11.webp" alt="Gadget luz led" style="height: 140px;">
+                </article>
             </div>
         </section>
 
-        <!-- COLUMNA 2 -->
         <section class="bento-col col-2">
             <div class="grid-inner">
-                <div class="item item-c">
-                    <h2>REVIEW NOTHING EAR A</h2>
-                    <img src="img/mini12.webp" alt="">
-                </div>
-                <div class="item item-d">
-                    <p>Aqui esta la review en la explico todo sobre los nuevos auriculares de noting, los nothing ear a</p>
-                </div>
-                <div class="item item-e">
-                    <img src="img/mini8.webp" alt="">
-                </div>
+                <article class="item span-full-width">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h2>REVIEW NOTHING EAR (A)</h2>
+                        <h3>9/10</h3>
+                    </div>
+                    <img src="mini12.webp" alt="Auriculares Nothing Ear A" style="max-height: 200px;">
+                </article>
+                
+                <article class="item">
+                    <h3>Análisis</h3>
+                    <p>En esta review explico todo sobre la cancelación de ruido y la calidad de sonido de los nuevos Nothing.</p>
+                </article>
+                
+                <article class="item">
+                    <img src="mini8.webp" alt="Microfono Elgato Wave" style="height: 100%;">
+                </article>
             </div>
         </section>
 
-        <!-- COLUMNA 3 -->
         <section class="bento-col col-3">
             <div class="grid-inner">
-                <div class="item item-f">
-                    <img src="img/mini9.webp" alt="">
-                    <h3>COMPARATIVA</h3>
-                </div>
+                <article class="item fill-height">
+                    <div>
+                        <h3>Versus</h3>
+                        <h2>COMPARATIVA DEFINITIVA</h2>
+                    </div>
+                    <img src="mini9.webp" alt="Apple Watch vs Whoop" style="flex-grow: 1;">
+                    <p>Apple Watch SE 2 vs Whoop Band: ¿Cuál mide mejor?</p>
+                </article>
             </div>
         </section>
 
@@ -54,4 +69,3 @@
 
 </body>
 </html>
-
