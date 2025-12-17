@@ -1,0 +1,89 @@
+@import url("variables.css");
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background: var(--bg);
+    color: var(--fg);
+}
+
+/* ==== GRID PRINCIPAL ==== */
+.bento {
+    display: grid;
+    gap: var(--gap);
+    padding: var(--gap);
+
+    grid-template-columns: 1fr;
+}
+
+/* Desktop ≥700px */
+@media (min-width: 700px) {
+    .bento {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+/* ==== COLUMNAS (primer nivel) ==== */
+.bento-col {
+    background: none;
+}
+
+/* ==== SEGUNDO NIVEL: Grid interno ==== */
+.grid-inner {
+    display: grid;
+    gap: var(--gap);
+
+    /* Ajustes base */
+    grid-template-columns: 1fr;
+}
+
+/* Configuraciones específicas según columna */
+.col-1 .grid-inner {
+    grid-template-rows: auto auto;
+}
+
+.col-2 .grid-inner {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto;
+}
+
+.col-3 .grid-inner {
+    grid-template-rows: auto;
+}
+
+/* ==== Ítems del bento ==== */
+.item {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1rem;
+    border: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    /* CSS Anidado */
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: calc(var(--radius) - 4px);
+    }
+
+    h2, h3, p {
+        margin: 0;
+    }
+}
+
+/* ==== EJEMPLOS DE CELDAS QUE OCUPAN MÁS ESPACIO ==== */
+.item-b {
+    grid-column: 1 / -1; /* ocupa toda la fila */
+}
+
+.item-d {
+    grid-row: span 2; /* ocupa varias filas */
+}
+
+.item-e {
+    grid-column: span 2; /* ocupa dos columnas */
+}
